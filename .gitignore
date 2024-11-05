@@ -1,11 +1,14 @@
 # Prerequisites
 *.d
+.env
 
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
+
+/objs
 
 # Precompiled Headers
 *.gch
@@ -30,3 +33,5 @@
 *.exe
 *.out
 *.app
+
+human
