@@ -1,0 +1,184 @@
+#include "Bone.hpp"
+
+std::vector<float> cubeVertices({
+    0.5f, 0.5f, 0.5f,
+    0.5f, 0.5f, -0.5f,
+    -0.5f, 0.5f, -0.5f,
+    -0.5f, 0.5f, 0.5f,
+    0.5f, -0.5f, 0.5f,
+    0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f, 0.5f
+});
+
+std::vector<int> cubeIndices({
+	0, 1, 2,
+	0, 2, 3,
+	0, 4, 5,
+	0, 5, 1,
+	1, 5, 6,
+	1, 6, 2,
+	2, 6, 7,
+	2, 7, 3,
+	3, 7, 4,
+	3, 4, 0,
+	4, 5, 6,
+	4, 6, 7
+});
+
+Bone::Bone() : vertices(cubeVertices), indices(cubeIndices) {
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(int), indices.data(), GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	rotation = Matrix4(1.0f);
+	scale = Matrix4(1.0f);
+	translation = Matrix4(1.0f);
+	color = Vector3(1.0f, 1.0f, 1.0f);
+	centerRot = Matrix4(1.0f);
+}
+
+Bone::Bone(Bone const &src) {
+	*this = src;
+}
+
+Bone::~Bone() {
+	vertices.clear();
+	indices.clear();
+}
+
+Bone&	Bone::operator=(Bone const &src) {
+	if (this != &src) {
+		clear();
+		vertices = src.vertices;
+		indices = src.indices;
+		rotation = src.rotation;
+		scale = src.scale;
+		translation = src.translation;
+		color = src.color;
+	}
+	return *this;
+}
+
+void	Bone::clear() {
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &VAO);
+	glDeleteBuffers(1, &EBO);
+}
+
+void	Bone::draw(Shader const &shader) {
+	shader.use();
+	bindVAO();
+	bindVBO();
+	bindEBO();
+
+	shader.setMat4("model", getModel());
+	shader.set3Float("color", color);
+
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
+}
+
+void	Bone::setCenterRot(Matrix4 centerRot) {
+	this->centerRot = centerRot;
+	updateStack(modelStack);
+}
+
+void	Bone::bindVAO() const {
+	glBindVertexArray(VAO);
+}
+
+void	Bone::bindVBO() const {
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+}
+
+void	Bone::bindEBO() const {
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+}
+
+void	Bone::setRotation(float angle, Vector3 axis) {
+	rotation = Matrix4::rotation(angle, axis);
+	updateStack(modelStack);
+}
+
+void	Bone::setScale(Vector3 scale) {
+	this->scale = Matrix4::scaling(scale);
+	updateStack(modelStack);
+}
+
+void	Bone::setTranslation(Vector3 translation) {
+	this->translation = Matrix4::translation(translation);
+	updateStack(modelStack);
+}
+
+void	Bone::changeScale(Vector3 scale) {
+	this->scale = Matrix4::scaling(Vector3(this->scale[0] * scale[0], this->scale[5] * scale[1], this->scale[10] * scale[2]));
+	for (size_t i = 0; i < children.size(); i++) {
+		children[i]->updateScale(scale);
+	}
+}
+
+void	Bone::updateScale(Vector3 scale) {
+	this->translation = Matrix4::translation(Vector3(translation[3] * scale[0], translation[7] * scale[1], translation[11] * scale[2]));
+	updateStack(modelStack);
+}
+
+Vector3	Bone::getCenterRot() const {
+	return Vector3(centerRot[3], centerRot[7], centerRot[11]);
+}
+
+Vector3	Bone::getPosition() const {
+	return Vector3(translation[3], translation[7], translation[11]);
+}
+
+Vector3	Bone::getScale() const {
+	return Vector3(scale[0], scale[5], scale[10]);
+}
+
+void	Bone::setColor(Vector3 color) {
+	this->color = color;
+}
+
+void Bone::addChild(Bone *child) {
+	children.push_back(child);
+}
+
+void	Bone::updateStack(std::vector<Matrix4> parentStack) {
+	modelStack = parentStack;
+	parentStack.push_back(centerRot);
+	parentStack.push_back(rotation);
+	parentStack.push_back(translation);
+	
+	for (size_t i = 0; i < children.size(); i++) {
+		children[i]->updateStack(parentStack);
+	}
+	parentStack.pop_back();
+	parentStack.pop_back();
+	parentStack.pop_back();
+}
+
+Matrix4	Bone::getModel() const {
+	Matrix4 stackedModel(1.0f);
+
+	for (size_t i = 0; i < modelStack.size(); i++) {
+		stackedModel = stackedModel * modelStack[i];
+	}
+
+	stackedModel = stackedModel * centerRot  * rotation * translation * scale;
+
+	return stackedModel;
+}

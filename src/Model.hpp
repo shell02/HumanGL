@@ -1,8 +1,7 @@
 #pragma once
 
 #include "humanGL.h"
-#include "Mesh.hpp"
-#include "Joint.hpp"
+#include "Bone.hpp"
 
 class Model {
 	public:
@@ -16,8 +15,22 @@ class Model {
 
 		void clear();
 
-		void test(float angle);
 
+	private:
+		Bone torso;
+		Bone head;
+		Bone leftArm;
+		Bone leftForeArm;
+		Bone rightArm;
+		Bone rightForeArm;
+		Bone leftThigh;
+		Bone leftLeg;
+		Bone rightThigh;
+		Bone rightLeg;
+
+		float time = 0.01f;
+		float speed = 0.1f;
+		
 		void setupTorso();
 		void setupHead();
 		void setupLeftArm();
@@ -28,27 +41,4 @@ class Model {
 		void setupLeftLeg();
 		void setupRightThigh();
 		void setupRightLeg();
-
-	private:
-		Mesh torso;
-		Mesh head;
-		Mesh leftArm;
-		Mesh leftForeArm;
-		Mesh rightArm;
-		Mesh rightForeArm;
-		Mesh leftThigh;
-		Mesh leftLeg;
-		Mesh rightThigh;
-		Mesh rightLeg;
-
-		Joint* torsoJoint;
-		Joint* headJoint;
-		Joint* leftArmJoint;
-		Joint* leftForeArmJoint;
-		Joint* rightArmJoint;
-		Joint* rightForeArmJoint;
-		Joint* leftThighJoint;
-		Joint* leftLegJoint;
-		Joint* rightThighJoint;
-		Joint* rightLegJoint;
 };
