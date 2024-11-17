@@ -47,9 +47,11 @@ Bone::Bone() : vertices(cubeVertices), indices(cubeIndices) {
 
 	rotation = Matrix4(1.0f);
 	scale = Matrix4(1.0f);
+	baseScale = Matrix4(1.0f);
 	translation = Matrix4(1.0f);
 	color = Vector3(1.0f, 1.0f, 1.0f);
 	centerRot = Matrix4(1.0f);
+	orgCenterRot = Matrix4(1.0f);
 }
 
 Bone::Bone(Bone const &src) {
@@ -68,8 +70,11 @@ Bone&	Bone::operator=(Bone const &src) {
 		indices = src.indices;
 		rotation = src.rotation;
 		scale = src.scale;
+		baseScale = src.baseScale;
 		translation = src.translation;
 		color = src.color;
+		centerRot = src.centerRot;
+		orgCenterRot = src.orgCenterRot;
 	}
 	return *this;
 }
@@ -94,6 +99,7 @@ void	Bone::draw(Shader const &shader) {
 }
 
 void	Bone::setCenterRot(Matrix4 centerRot) {
+	this->orgCenterRot = centerRot;
 	this->centerRot = centerRot;
 	updateStack(modelStack);
 }
@@ -116,7 +122,8 @@ void	Bone::setRotation(float angle, Vector3 axis) {
 }
 
 void	Bone::setScale(Vector3 scale) {
-	this->scale = Matrix4::scaling(scale);
+	this->baseScale = Matrix4::scaling(scale);
+	this->scale = this->baseScale;
 	updateStack(modelStack);
 }
 
@@ -126,14 +133,14 @@ void	Bone::setTranslation(Vector3 translation) {
 }
 
 void	Bone::changeScale(Vector3 scale) {
-	this->scale = Matrix4::scaling(Vector3(this->scale[0] * scale[0], this->scale[5] * scale[1], this->scale[10] * scale[2]));
+	this->scale = Matrix4::scaling(Vector3(this->baseScale[0] * scale[0], this->baseScale[5] * scale[1], this->baseScale[10] * scale[2]));
 	for (size_t i = 0; i < children.size(); i++) {
 		children[i]->updateScale(scale);
 	}
 }
 
 void	Bone::updateScale(Vector3 scale) {
-	this->translation = Matrix4::translation(Vector3(translation[3] * scale[0], translation[7] * scale[1], translation[11] * scale[2]));
+	this->centerRot = Matrix4::translation(Vector3(orgCenterRot[3] * scale[0], orgCenterRot[7] * scale[1], orgCenterRot[11] * scale[2]));
 	updateStack(modelStack);
 }
 

@@ -22,8 +22,6 @@ Model::Model() {
 	setupLeftLeg();
 	setupRightThigh();
 	setupRightLeg();
-
-	// torso.changeScale(Vector3(2.0f, 1.0f, 1.0f));
 }
 
 Model::~Model() {}
@@ -42,12 +40,6 @@ void Model::clear() {
 }
 
 void Model::draw(Shader shader) {
-	torso.setCenterRot(Matrix4::translation(Vector3(time / 200.0f, 0.0f, 0.0f)));
-	torso.setRotation(time, Vector3(0.0f, 1.0f, 0.0f));
-	rightArm.setRotation(time, Vector3(0.0f, 0.0f, 1.0f));
-	rightForeArm.setRotation(time, Vector3(0.0f, 0.0f, 1.0f));
-	leftThigh.setRotation(time, Vector3(0.0f, 0.0f, 1.0f));
-	leftLeg.setRotation(time, Vector3(0.0f, 0.0f, 1.0f));
 	time += speed;
 
 	torso.draw(shader);

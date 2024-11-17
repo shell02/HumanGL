@@ -50,9 +50,11 @@ class Bone {
 
 		Matrix4			rotation;
 		Matrix4			scale;
+		Matrix4			baseScale;
 		Matrix4			translation;
 
 		Matrix4			centerRot;
+		Matrix4			orgCenterRot;
 
 		Vector3			color;
 
