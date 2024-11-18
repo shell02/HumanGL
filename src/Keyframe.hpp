@@ -1,22 +1,18 @@
 #pragma once
 
 #include "humanGL.h"
-#include "JointTransform.hpp"
+#include "BoneTransform.hpp"
 
 
 class Keyframe {
 	public:
-		Keyframe();
+		Keyframe(std::map<std::string, BoneTransform> pose, float timestamp);
 		~Keyframe();
 
-		Keyframe& operator=(Keyframe const &copy);
-
-		void setTimestamp(float time);
-
-		void clear();
+		float getTimestamp() const;
+		std::map<std::string, BoneTransform> getPose() const;
 
 	private:
 		float		_timestamp;
-		std::map<std::string, JointTransform>	_jointTransforms;
-
+		std::map<std::string, BoneTransform>	_pose;
 };

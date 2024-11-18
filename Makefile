@@ -5,13 +5,14 @@ LIB = ./lib -lglfw3 -lfreetype -lGL
 CFLAGS = -Wall -Werror -Wextra
 SRCS_DIR = ./src
 OBJS_DIR = ./objs
-SRCS = main.cpp init.cpp utils.cpp Matrix.cpp Shader.cpp Vector.cpp Camera.cpp Text.cpp Bone.cpp Model.cpp
+SRCS = main.cpp init.cpp utils.cpp Matrix.cpp Shader.cpp Vector.cpp Camera.cpp Text.cpp Bone.cpp Model.cpp Animation.cpp Animator.cpp Quaternion.cpp Keyframe.cpp BoneTransform.cpp animations/walk.cpp
 OBJS := $(patsubst %.cpp, $(OBJS_DIR)/%.o, $(SRCS))
 
 all: mkObjDir $(NAME)
 
 mkObjDir:
 	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)/animations
 
 $(NAME): $(OBJS)
 	@printf "\e[0;32mDone compiling objects!            \n\e[0m"

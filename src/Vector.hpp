@@ -56,6 +56,8 @@ class Vector3 {
 		float	getY(void) const;
 		float	getZ(void) const;
 
+		static Vector3	interpolate(Vector3 const &v1, Vector3 const &v2, float time);
+
 	private:
 		float	x;
 		float	y;

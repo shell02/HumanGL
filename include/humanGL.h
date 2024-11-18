@@ -19,6 +19,7 @@ typedef struct	s_controls {
 }				t_controls;
 
 class	Camera;
+class	Animation;
 
 // CALLBACKS
 void error_callback(int error, const char *description);
@@ -34,5 +35,8 @@ void processInput(GLFWwindow *window, t_controls &controls);
 void processMovement(GLFWwindow *window, Camera *camera, t_controls &controls);
 
 int	getFPS();
+
+// ANIMATIONS
+Animation	walkAnimation();
 
 #endif

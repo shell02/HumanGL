@@ -2,19 +2,18 @@
 
 #include "humanGL.h"
 #include "Bone.hpp"
+#include "BoneTransform.hpp"
 
 class Model {
 	public:
 		Model();
 		~Model();
 
-		Model& operator=(Model const &copy);
-
 		void draw(Shader shader);
-		void update(float deltaTime);
 
 		void clear();
 
+		void applyPoseToBones(std::map<std::string, BoneTransform> pose);
 
 	private:
 		Bone torso;
@@ -27,9 +26,6 @@ class Model {
 		Bone leftLeg;
 		Bone rightThigh;
 		Bone rightLeg;
-
-		float time = 0.01f;
-		float speed = 0.1f;
 		
 		void setupTorso();
 		void setupHead();

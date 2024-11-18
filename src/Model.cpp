@@ -40,8 +40,6 @@ void Model::clear() {
 }
 
 void Model::draw(Shader shader) {
-	time += speed;
-
 	torso.draw(shader);
 	head.draw(shader);
 	leftArm.draw(shader);
@@ -52,10 +50,6 @@ void Model::draw(Shader shader) {
 	leftLeg.draw(shader);
 	rightThigh.draw(shader);
 	rightLeg.draw(shader);
-}
-
-void Model::update(float deltaTime) {
-	(void)deltaTime;
 }
 
 void Model::setupTorso() {
@@ -126,17 +120,15 @@ void Model::setupRightLeg() {
 	rightLeg.setTranslation(Vector3(0.0f, -.5f, 0.0f));
 }
 
-Model&	Model::operator=(Model const &src) {
-	torso = src.torso;
-	head = src.head;
-	leftArm = src.leftArm;
-	leftForeArm = src.leftForeArm;
-	rightArm = src.rightArm;
-	rightForeArm = src.rightForeArm;
-	leftThigh = src.leftThigh;
-	leftLeg = src.leftLeg;
-	rightThigh = src.rightThigh;
-	rightLeg = src.rightLeg;
-
-	return *this;
+void	Model::applyPoseToBones(std::map<std::string, BoneTransform> pose) {
+	torso.applyPose(pose["torso"]);
+	head.applyPose(pose["head"]);
+	leftArm.applyPose(pose["leftArm"]);
+	leftForeArm.applyPose(pose["leftForeArm"]);
+	rightArm.applyPose(pose["rightArm"]);
+	rightForeArm.applyPose(pose["rightForeArm"]);
+	leftThigh.applyPose(pose["leftThigh"]);
+	leftLeg.applyPose(pose["leftLeg"]);
+	rightThigh.applyPose(pose["rightThigh"]);
+	rightLeg.applyPose(pose["rightLeg"]);
 }

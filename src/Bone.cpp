@@ -45,7 +45,7 @@ Bone::Bone() : vertices(cubeVertices), indices(cubeIndices) {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	rotation = Matrix4(1.0f);
+	rotation = Quaternion().toMatrix();
 	scale = Matrix4(1.0f);
 	baseScale = Matrix4(1.0f);
 	translation = Matrix4(1.0f);
@@ -116,8 +116,24 @@ void	Bone::bindEBO() const {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 }
 
+void	Bone::setRotation(Matrix4 rotation) {
+	this->rotation = rotation;
+	updateStack(modelStack);
+}
+
+void	Bone::setScale(Matrix4 scale) {
+	this->baseScale = scale;
+	this->scale = scale;
+	updateStack(modelStack);
+}
+
+void	Bone::updateTranslation(Matrix4 translation) {
+	this->centerRot = centerRot * translation;
+	updateStack(modelStack);
+}
+
 void	Bone::setRotation(float angle, Vector3 axis) {
-	rotation = Matrix4::rotation(angle, axis);
+	rotation = Quaternion(angle, axis).toMatrix();
 	updateStack(modelStack);
 }
 
@@ -132,15 +148,15 @@ void	Bone::setTranslation(Vector3 translation) {
 	updateStack(modelStack);
 }
 
-void	Bone::changeScale(Vector3 scale) {
-	this->scale = Matrix4::scaling(Vector3(this->baseScale[0] * scale[0], this->baseScale[5] * scale[1], this->baseScale[10] * scale[2]));
+void	Bone::changeScale(Vector3 newScale) {
+	this->scale = Matrix4::scaling(Vector3(this->baseScale[0] * newScale[0], this->baseScale[5] * newScale[1], this->baseScale[10] * newScale[2]));
 	for (size_t i = 0; i < children.size(); i++) {
-		children[i]->updateScale(scale);
+		children[i]->updateScale(newScale);
 	}
 }
 
-void	Bone::updateScale(Vector3 scale) {
-	this->centerRot = Matrix4::translation(Vector3(orgCenterRot[3] * scale[0], orgCenterRot[7] * scale[1], orgCenterRot[11] * scale[2]));
+void	Bone::updateScale(Vector3 newScale) {
+	this->centerRot = Matrix4::translation(Vector3(orgCenterRot[3] * newScale[0], orgCenterRot[7] * newScale[1], orgCenterRot[11] * newScale[2]));
 	updateStack(modelStack);
 }
 
@@ -185,7 +201,13 @@ Matrix4	Bone::getModel() const {
 		stackedModel = stackedModel * modelStack[i];
 	}
 
-	stackedModel = stackedModel * centerRot  * rotation * translation * scale;
+	stackedModel = stackedModel * centerRot * rotation * translation * scale;
 
 	return stackedModel;
+}
+
+void	Bone::applyPose(BoneTransform pose) {
+	// (void)pose;
+	updateTranslation(Matrix4::translation(pose.getTranslation()));
+	setRotation(pose.getRotation().toMatrix());
 }

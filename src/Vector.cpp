@@ -142,6 +142,14 @@ float	Vector3::getZ(void) const {
 	return z;
 }
 
+Vector3	Vector3::interpolate(Vector3 const &v1, Vector3 const &v2, float time) {
+	float x = v1.getX() + (v2.getX() - v1.getX()) * time;
+	float y = v1.getY() + (v2.getY() - v1.getY()) * time;
+	float z = v1.getZ() + (v2.getZ() - v1.getZ()) * time;
+
+	return Vector3(x, y, z);
+}
+
 Vector4::Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 
 Vector4::Vector4(Vector4 const &copy) : x(copy.x), y(copy.y), z(copy.z), w(copy.w) {}

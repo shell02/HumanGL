@@ -3,6 +3,7 @@
 #include "Shader.hpp"
 #include "Text.hpp"
 #include "Model.hpp"
+#include "Animator.hpp"
 
 int main() {
 	GLFWwindow* window = initGL();
@@ -14,6 +15,9 @@ int main() {
 	Camera camera(Vector3(0.0f, -1.5f, 10.0f));
 
 	Model human;
+
+	Animator animator(&human);
+	animator.startAnimation(walkAnimation());
 
 	float lastFrame = 0.0f;
 	float deltaTime = 0.0f;
@@ -33,8 +37,9 @@ int main() {
 
 		processMovement(window, &camera, controls);
 
-		text.renderText("Hello, World!", 25.0f, 25.0f, 1.0f, Vector3(0.5f, 0.8f, 0.2f));
+		text.renderText("HumanGL", 25.0f, 25.0f, 1.0f, Vector3(0.5f, 0.8f, 0.2f));
 
+		animator.update(deltaTime);
 		human.draw(shader);
 
 		glfwSwapBuffers(window);

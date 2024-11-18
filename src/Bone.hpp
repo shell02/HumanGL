@@ -4,6 +4,8 @@
 #include "Vector.hpp"
 #include "Matrix.hpp"
 #include "Shader.hpp"
+#include "BoneTransform.hpp"
+#include "Quaternion.hpp"
 
 class Bone {
 
@@ -20,6 +22,10 @@ class Bone {
 		void bindVAO() const;
 		void bindVBO() const;
 		void bindEBO() const;
+
+		void	setRotation(Matrix4 rotation);
+		void	setScale(Matrix4 scale);
+		void	updateTranslation(Matrix4 translation);
 
 		void	setRotation(float angle, Vector3 axis);
 		void	setScale(Vector3 scale);
@@ -39,6 +45,8 @@ class Bone {
 
 		void	addChild(Bone* child);
 		void	updateStack(std::vector<Matrix4> modelStack);
+
+		void	applyPose(BoneTransform pose);
 
 	private:
 		unsigned int	VBO;
