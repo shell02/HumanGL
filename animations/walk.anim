@@ -1,0 +1,109 @@
+duration 2.0
+
+keyframe 0.0
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation -60.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -5.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation -20.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -10.0	1.0 0.0 0.0
+
+keyframe 0.25
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 -0.5 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation -75.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 45.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 40.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 10.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -15.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -30.0	1.0 0.0 0.0
+
+keyframe 0.5
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation -10.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -5.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -40.0	1.0 0.0 0.0
+
+keyframe 0.75
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.5 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 10.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation -30.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation -15.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 35.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -50.0	1.0 0.0 0.0
+
+keyframe 1.0
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation -60.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation -20.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -10.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -5.0	1.0 0.0 0.0
+
+keyframe 1.25
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 -0.5 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation 40.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 10.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation -75.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 45.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -30.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -15.0	1.0 0.0 0.0
+
+keyframe 1.5
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation -10.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 5.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -40.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -5.0	1.0 0.0 0.0
+
+keyframe 1.75
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.5 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation -30.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 10.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 10.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 35.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -50.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation -15.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation 0.0	1.0 0.0 0.0
+
+keyframe 2.0
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 50.0	0.0 1.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation -60.0	1.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 15.0	1.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 30.0	1.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation -5.0	1.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation -20.0	1.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation -10.0	1.0 0.0 0.0

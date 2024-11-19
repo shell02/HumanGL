@@ -123,6 +123,9 @@ double	Vector3::getLength(void) const {
 }
 
 Vector3	Vector3::unit(void) const {
+	if (x == 0 && y == 0 && z == 0) {
+		return Vector3(0, 0, 0);
+	}
 	double length = getLength();
 	if (length == 0) {
         throw std::invalid_argument("Cannot normalize a zero-length vector");

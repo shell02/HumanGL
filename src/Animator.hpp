@@ -13,7 +13,7 @@ class Animator {
 
 		Animator&	operator=(Animator const &src);
 		
-		void		startAnimation(Animation animation);
+		void		startAnimation(Animation const &animation);
 		void		update(float deltaTime);
 
 	private:

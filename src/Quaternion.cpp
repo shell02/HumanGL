@@ -7,6 +7,7 @@ Quaternion::Quaternion(float x, float y, float z, float w) : w(w), x(x), y(y), z
 Quaternion::Quaternion(float angle, Vector3 axis) {
     Vector3 normalizedAxis = axis.unit();
     
+	angle = angle * (M_PI / 180);
     float halfAngle = angle / 2.0f;
     float sinHalfAngle = sin(halfAngle);
 

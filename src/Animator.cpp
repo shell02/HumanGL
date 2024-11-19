@@ -17,7 +17,7 @@ Animator&	Animator::operator=(Animator const &src) {
 	return *this;
 }
 
-void	Animator::startAnimation(Animation animation) {
+void	Animator::startAnimation(Animation const &animation) {
 	_currentAnimation = animation;
 	_currentTime = 0.0f;
 }

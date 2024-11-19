@@ -22,6 +22,74 @@ std::vector<Keyframe>	Animation::getKeyframes() const {
 	return _keyframes;
 }
 
-void Animation::loadAnimation(std::string filename)
-{
+void Animation::loadAnimation(std::string filename) {
+	_parseFile(filename);
+}
+
+void Animation::_parseFile(std::string filename) {
+	std::ifstream	file(filename);
+	std::string		line;
+
+	float			timestamp;
+	std::map<std::string, BoneTransform> pose;
+
+	_error = 0;
+	if (!file.is_open()) {
+		std::cerr << "Could not open file: " << filename << std::endl;
+		_error = 1;
+		return;
+	}
+
+	while (std::getline(file, line)) {
+		std::stringstream	ss(line);
+		std::string			token;
+		ss >> token;
+
+		if (token == "duration") {
+			ss >> _duration;
+		} else if (token == "keyframe") {
+			if (pose.size() > 0) {
+				_keyframes.push_back(Keyframe(pose, timestamp));
+			}
+			ss >> timestamp;
+			pose.clear();
+		} else {
+			std::string name = token;
+			BoneTransform bone;
+
+			std::string type;
+			while (ss >> type) {
+				if (type == "translate") {
+					float x;
+					float y;
+					float z;
+					ss >> x >> y >> z;
+					bone.setTranslation(Vector3(x / 10, y / 10, z / 10));
+				} else if (type == "rotation") {
+					float angle, x, y, z;
+					ss >> angle >> x >> y >> z;
+					angle = 360 - angle;
+					Quaternion rotation(angle, Vector3(x, y, z));
+					bone.setRotation(rotation);
+				} else {
+					std::cerr << "Invalid token: " << type << std::endl;
+					_error = 1;
+					file.close();
+					return;
+				}
+			}
+			pose[name] = bone;
+		}
+
+	}
+
+	if (pose.size() > 0) {
+		_keyframes.push_back(Keyframe(pose, timestamp));
+	}
+
+	file.close();
+}
+
+int	Animation::getError() const {
+	return _error;
 }

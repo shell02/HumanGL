@@ -16,6 +16,7 @@ class Animation {
 		std::vector<Keyframe>	getKeyframes() const;
 
 		void	loadAnimation(std::string filename);
+		int		getError() const;
 
 	private:
 		std::vector<Keyframe>	_keyframes;
@@ -24,9 +25,5 @@ class Animation {
 		int						_error;
 
 		void					_parseFile(std::string filename);
-		void					_parseLine(std::string line);
-		void					_parseKeyframe(std::string line);
-		void					_parseBone(std::string line);
-		void					_parseTranslation(std::string line);
-		void					_parseRotation(std::string line);
+		std::map<std::string, BoneTransform>	getPose(std::stringstream &ss);
 };

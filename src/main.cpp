@@ -17,7 +17,21 @@ int main() {
 	Model human;
 
 	Animator animator(&human);
-	animator.startAnimation(walkAnimation());
+
+	Animation walk;
+	walk.loadAnimation("animations/walk.anim");
+	if (walk.getError()) {
+		ft_error("Could not load animation", window);
+		shader.clear();
+		text.clear();
+		human.clear();
+
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		return 1;
+	}
+
+	animator.startAnimation(walk);
 
 	float lastFrame = 0.0f;
 	float deltaTime = 0.0f;

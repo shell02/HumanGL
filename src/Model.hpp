@@ -14,6 +14,7 @@ class Model {
 		void clear();
 
 		void applyPoseToBones(std::map<std::string, BoneTransform> pose);
+		void showTail();
 
 	private:
 		Bone torso;
@@ -26,6 +27,10 @@ class Model {
 		Bone leftLeg;
 		Bone rightThigh;
 		Bone rightLeg;
+		Bone tailBegin;
+		Bone tailEnd;
+
+		bool tailVisible;
 		
 		void setupTorso();
 		void setupHead();
@@ -37,4 +42,6 @@ class Model {
 		void setupLeftLeg();
 		void setupRightThigh();
 		void setupRightLeg();
+		void setupTailBegin();
+		void setupTailEnd();
 };

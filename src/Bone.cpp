@@ -128,7 +128,7 @@ void	Bone::setScale(Matrix4 scale) {
 }
 
 void	Bone::updateTranslation(Matrix4 translation) {
-	this->centerRot = centerRot * translation;
+	this->centerRot = orgCenterRot * translation;
 	updateStack(modelStack);
 }
 
