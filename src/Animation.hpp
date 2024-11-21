@@ -20,6 +20,8 @@ class Animation {
 
 		void	clear();
 
+		bool	checkKeyframes();
+
 	private:
 		std::vector<Keyframe>	_keyframes;
 		float					_duration;

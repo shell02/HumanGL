@@ -19,14 +19,10 @@ void processInput(GLFWwindow *window, t_controls &controls) {
 		controls.reload = true;
 	}
 	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS) {
-		controls.state = BOXE;
-		controls.reload = true;
-	}
-	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS) {
 		controls.state = WAVE;
 		controls.reload = true;
 	}
-	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS) {
 		controls.state = TEST;
 		controls.reload = true;
 	}

@@ -88,7 +88,31 @@ void Animation::_parseFile(std::string filename) {
 		_keyframes.push_back(Keyframe(pose, timestamp));
 	}
 
+	checkKeyframes();
+
 	file.close();
+}
+
+bool	Animation::checkKeyframes() {
+	if (_keyframes.size() == 0) {
+		std::cerr << "No keyframes found" << std::endl;
+		_error = 1;
+		return false;
+	}
+
+	if (_keyframes[0].getTimestamp() != 0.0f) {
+		std::cerr << "First keyframe timestamp is not 0" << std::endl;
+		_keyframes.insert(_keyframes.begin(), Keyframe(_keyframes[0].getPose(), 0.0f));
+		return true;
+	}
+
+	if (_keyframes[_keyframes.size() - 1].getTimestamp() != _duration) {
+		std::cerr << "Last keyframe timestamp does not match duration" << std::endl;
+		_keyframes.push_back(Keyframe(_keyframes[0].getPose(), _duration));
+		return true;
+	}
+
+	return true;
 }
 
 int	Animation::getError() const {

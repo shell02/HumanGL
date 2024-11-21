@@ -1,0 +1,15 @@
+duration 1.0
+
+keyframe 0.0
+head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+leftArm			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+leftForeArm		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+rightArm		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+rightForeArm	translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+leftThigh		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+leftLeg			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+rightThigh		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+rightLeg		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+tailBegin		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
+tailEnd			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0

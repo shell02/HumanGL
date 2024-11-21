@@ -292,7 +292,7 @@ void	Model::scaleDown(int bodyPart) {
 			break;
 
 		case TORSO:
-			if (scaleFactorTorso < 0.5f)
+			if (scaleFactorTorso < 0.6f)
 				return ;
 			scaleFactorTorso -= 0.005f;
 			torso.changeScale(Vector3(scaleFactorTorso, scaleFactorTorso, scaleFactorTorso));

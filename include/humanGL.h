@@ -17,9 +17,8 @@
 #define WALK 1
 #define JUMP 2
 #define IDLE 3
-#define BOXE 4
-#define WAVE 5
-#define TEST 6
+#define WAVE 4
+#define TEST 5
 
 #define HEAD 1
 #define TORSO 2

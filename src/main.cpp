@@ -42,9 +42,8 @@ int main() {
 		text.renderText("1 - Walk", 5.0f, (float)WINDOW_HEIGHT - 50.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("2 - Jump", 5.0f, (float)WINDOW_HEIGHT - 75.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("3 - Idle", 5.0f, (float)WINDOW_HEIGHT - 100.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
-		text.renderText("4 - Boxe", 5.0f, (float)WINDOW_HEIGHT - 125.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
-		text.renderText("5 - Wave", 5.0f, (float)WINDOW_HEIGHT - 150.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
-		text.renderText("6 - Live Test", 5.0f, (float)WINDOW_HEIGHT - 175.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("4 - Wave", 5.0f, (float)WINDOW_HEIGHT - 125.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("5 - Live Test", 5.0f, (float)WINDOW_HEIGHT - 150.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("T - Toggle tail", 5.0f, (float)WINDOW_HEIGHT - 300.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("FPS: " + std::to_string(getFPS()), (float)WINDOW_WIDTH - 100.0f, 5.0f, .2f, Vector3(0.0f, 0.0f, 0.0f));
 
@@ -75,9 +74,6 @@ int main() {
 				case IDLE:
 					anim.loadAnimation("animations/idle.anim");
 					break;
-				case BOXE:
-					anim.loadAnimation("animations/boxe.anim");
-					break;
 				case WAVE:
 					anim.loadAnimation("animations/wave.anim");
 					break;
@@ -91,7 +87,6 @@ int main() {
 			if (anim.getError()) {
 				animator.stopAnimation();
 				anim.clear();
-				ft_error_non_fatal("Could not load animation");
 			} else {
 				animator.startAnimation(anim);
 			}
