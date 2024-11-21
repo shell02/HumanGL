@@ -15,6 +15,10 @@ class Model {
 
 		void applyPoseToBones(std::map<std::string, BoneTransform> pose);
 		void showTail();
+		void hideTail();
+
+		void scaleUp(int bodyPart);
+		void scaleDown(int bodyPart);
 
 	private:
 		Bone torso;
@@ -44,4 +48,15 @@ class Model {
 		void setupRightLeg();
 		void setupTailBegin();
 		void setupTailEnd();
+
+		float scaleFactorHead;
+		float scaleFactorTorso;
+		float scaleFactorLeftArm;
+		float scaleFactorLeftForeArm;
+		float scaleFactorRightArm;
+		float scaleFactorRightForeArm;
+		float scaleFactorLeftThigh;
+		float scaleFactorLeftLeg;
+		float scaleFactorRightThigh;
+		float scaleFactorRightLeg;
 };

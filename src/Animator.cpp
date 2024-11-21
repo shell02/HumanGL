@@ -37,6 +37,11 @@ void	Animator::update(float deltaTime) {
 	_model->applyPoseToBones(currentPose);
 }
 
+void	Animator::stopAnimation() {
+	_currentAnimation = Animation();
+	_currentTime = 0.0f;
+}
+
 std::map<std::string, BoneTransform> Animator::calculateCurrentPose()
 {
 	std::vector<Keyframe> keyframes = getPrevAndNextKeyframes();

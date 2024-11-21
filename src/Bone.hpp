@@ -10,7 +10,7 @@
 class Bone {
 
 	public:
-		Bone();
+		Bone(std::string name = "Bone");
 		Bone(Bone const &src);
 		~Bone();
 
@@ -48,6 +48,17 @@ class Bone {
 
 		void	applyPose(BoneTransform pose);
 
+		std::string	getName() const;
+
+		void	setScaleConstraint(float x, float y, float z);
+		void	setScaleConstraintX(float x);
+		void	setScaleConstraintY(float y);
+		void	setScaleConstraintZ(float z);
+
+		float	getScaleConstraintX() const;
+		float	getScaleConstraintY() const;
+		float	getScaleConstraintZ() const;
+
 	private:
 		unsigned int	VBO;
 		unsigned int	VAO;
@@ -62,10 +73,17 @@ class Bone {
 		Matrix4			translation;
 
 		Matrix4			centerRot;
+		Matrix4			scaleCenterRot;
 		Matrix4			orgCenterRot;
 
 		Vector3			color;
 
 		std::vector<Bone*>		children;
 		std::vector<Matrix4>	modelStack;
+
+		std::string		name;
+
+		float	scaleConstraintX;
+		float	scaleConstraintY;
+		float	scaleConstraintZ;
 };

@@ -23,6 +23,7 @@ std::vector<Keyframe>	Animation::getKeyframes() const {
 }
 
 void Animation::loadAnimation(std::string filename) {
+	_keyframes.clear();
 	_parseFile(filename);
 }
 
@@ -92,4 +93,10 @@ void Animation::_parseFile(std::string filename) {
 
 int	Animation::getError() const {
 	return _error;
+}
+
+void	Animation::clear() {
+	_keyframes.clear();
+	_duration = 0.0f;
+	_error = 0;
 }

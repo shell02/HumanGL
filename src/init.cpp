@@ -1,5 +1,9 @@
 #include "humanGL.h"
 
+void ft_error_non_fatal(std::string message) {
+	std::cerr << message << std::endl;
+}
+
 void ft_error(std::string message, GLFWwindow* window) {
 	std::cerr << message << std::endl;
 	glfwDestroyWindow(window);
@@ -57,6 +61,13 @@ GLFWwindow*	initGL(void) {
 t_controls	initControls(void) {
 	t_controls controls;
 
-	controls.state = "start";
+	controls.state = 0;
+	controls.bodyPart = 0;
+	controls.reload = false;
+	controls.tail = true;
+	controls.t = false;
+	controls.plus = false;
+	controls.minus = false;
+	controls.scaleFactor = 1.0f;
 	return controls;
 }

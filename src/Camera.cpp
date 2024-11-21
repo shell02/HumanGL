@@ -71,10 +71,12 @@ void	Camera::updateFront(void) {
 
 void	Camera::setYaw(float yaw) {
 	this->yaw = yaw;
+	updateFront();
 }
 
 void	Camera::setPitch(float pitch) {
 	this->pitch = pitch;
+	updateFront();
 }
 
 void	Camera::updatePos(Vector3 newPos) {

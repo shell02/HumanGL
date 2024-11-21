@@ -18,6 +18,8 @@ class Animation {
 		void	loadAnimation(std::string filename);
 		int		getError() const;
 
+		void	clear();
+
 	private:
 		std::vector<Keyframe>	_keyframes;
 		float					_duration;

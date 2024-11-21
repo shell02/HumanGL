@@ -26,7 +26,7 @@ std::vector<int> cubeIndices({
 	4, 6, 7
 });
 
-Bone::Bone() : vertices(cubeVertices), indices(cubeIndices) {
+Bone::Bone(std::string name) : vertices(cubeVertices), indices(cubeIndices), name(name) {
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -51,7 +51,12 @@ Bone::Bone() : vertices(cubeVertices), indices(cubeIndices) {
 	translation = Matrix4(1.0f);
 	color = Vector3(1.0f, 1.0f, 1.0f);
 	centerRot = Matrix4(1.0f);
+	scaleCenterRot = Matrix4(1.0f);
 	orgCenterRot = Matrix4(1.0f);
+
+	scaleConstraintX = 0.0f;
+	scaleConstraintY = 0.0f;
+	scaleConstraintZ = 0.0f;
 }
 
 Bone::Bone(Bone const &src) {
@@ -74,6 +79,7 @@ Bone&	Bone::operator=(Bone const &src) {
 		translation = src.translation;
 		color = src.color;
 		centerRot = src.centerRot;
+		scaleCenterRot = src.scaleCenterRot;
 		orgCenterRot = src.orgCenterRot;
 	}
 	return *this;
@@ -100,6 +106,7 @@ void	Bone::draw(Shader const &shader) {
 
 void	Bone::setCenterRot(Matrix4 centerRot) {
 	this->orgCenterRot = centerRot;
+	this->scaleCenterRot = centerRot;
 	this->centerRot = centerRot;
 	updateStack(modelStack);
 }
@@ -128,7 +135,7 @@ void	Bone::setScale(Matrix4 scale) {
 }
 
 void	Bone::updateTranslation(Matrix4 translation) {
-	this->centerRot = orgCenterRot * translation;
+	this->centerRot = scaleCenterRot * translation;
 	updateStack(modelStack);
 }
 
@@ -149,6 +156,15 @@ void	Bone::setTranslation(Vector3 translation) {
 }
 
 void	Bone::changeScale(Vector3 newScale) {
+	if (scaleConstraintX != 0.0f && newScale[0] > scaleConstraintX) {
+		newScale.setX(scaleConstraintX);
+	}
+	if (scaleConstraintY != 0.0f && newScale[1] > scaleConstraintY) {
+		newScale.setY(scaleConstraintY);
+	}
+	if (scaleConstraintZ != 0.0f && newScale[2] > scaleConstraintZ) {
+		newScale.setZ(scaleConstraintZ);
+	}
 	this->scale = Matrix4::scaling(Vector3(this->baseScale[0] * newScale[0], this->baseScale[5] * newScale[1], this->baseScale[10] * newScale[2]));
 	for (size_t i = 0; i < children.size(); i++) {
 		children[i]->updateScale(newScale);
@@ -156,7 +172,8 @@ void	Bone::changeScale(Vector3 newScale) {
 }
 
 void	Bone::updateScale(Vector3 newScale) {
-	this->centerRot = Matrix4::translation(Vector3(orgCenterRot[3] * newScale[0], orgCenterRot[7] * newScale[1], orgCenterRot[11] * newScale[2]));
+	this->scaleCenterRot = Matrix4::translation(Vector3(orgCenterRot[3] * newScale[0], orgCenterRot[7] * newScale[1], orgCenterRot[11] * newScale[2]));
+	this->centerRot = this->scaleCenterRot;
 	updateStack(modelStack);
 }
 
@@ -207,7 +224,40 @@ Matrix4	Bone::getModel() const {
 }
 
 void	Bone::applyPose(BoneTransform pose) {
-	// (void)pose;
 	updateTranslation(Matrix4::translation(pose.getTranslation()));
 	setRotation(pose.getRotation().toMatrix());
+}
+
+std::string	Bone::getName() const {
+	return name;
+}
+
+void	Bone::setScaleConstraint(float x, float y, float z) {
+	scaleConstraintX = x;
+	scaleConstraintY = y;
+	scaleConstraintZ = z;
+}
+
+void	Bone::setScaleConstraintX(float x) {
+	scaleConstraintX = x;
+}
+
+void	Bone::setScaleConstraintY(float y) {
+	scaleConstraintY = y;
+}
+
+void	Bone::setScaleConstraintZ(float z) {
+	scaleConstraintZ = z;
+}
+
+float	Bone::getScaleConstraintX() const {
+	return scaleConstraintX;
+}
+
+float	Bone::getScaleConstraintY() const {
+	return scaleConstraintY;
+}
+
+float	Bone::getScaleConstraintZ() const {
+	return scaleConstraintZ;
 }

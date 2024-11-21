@@ -145,6 +145,18 @@ float	Vector3::getZ(void) const {
 	return z;
 }
 
+void	Vector3::setX(float x) {
+	this->x = x;
+}
+
+void	Vector3::setY(float y) {
+	this->y = y;
+}
+
+void	Vector3::setZ(float z) {
+	this->z = z;
+}
+
 Vector3	Vector3::interpolate(Vector3 const &v1, Vector3 const &v2, float time) {
 	float x = v1.getX() + (v2.getX() - v1.getX()) * time;
 	float y = v1.getY() + (v2.getY() - v1.getY()) * time;

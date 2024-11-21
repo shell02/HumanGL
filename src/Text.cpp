@@ -76,7 +76,7 @@ Text::Text(std::string fontPath, unsigned int fontSize) : error(false), textProg
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	this->projection = Matrix4::orthographic(0.0f, 800.0f, 0.0f, 600.0f, -1.0f, 1.0f);
+	this->projection = Matrix4::orthographic(0.0f, (float)WINDOW_WIDTH, 0.0f, (float)WINDOW_HEIGHT, -1.0f, 1.0f);
 }
 
 Text::~Text() {

@@ -12,26 +12,13 @@ int main() {
 	Shader	shader("shaders/vertex.vs", "shaders/fragment.fs");
 	Text	text;
 
-	Camera camera(Vector3(0.0f, -1.5f, 10.0f));
+	Camera camera(Vector3(9.0f, -1.0f, 7.0f));
+	camera.setYaw(-140.0f);
 
 	Model human;
 
 	Animator animator(&human);
-
-	Animation walk;
-	walk.loadAnimation("animations/walk.anim");
-	if (walk.getError()) {
-		ft_error("Could not load animation", window);
-		shader.clear();
-		text.clear();
-		human.clear();
-
-		glfwDestroyWindow(window);
-		glfwTerminate();
-		return 1;
-	}
-
-	animator.startAnimation(walk);
+	Animation anim;
 
 	float lastFrame = 0.0f;
 	float deltaTime = 0.0f;
@@ -51,7 +38,64 @@ int main() {
 
 		processMovement(window, &camera, controls);
 
-		text.renderText("HumanGL", 25.0f, 25.0f, 1.0f, Vector3(0.5f, 0.8f, 0.2f));
+		text.renderText("Choose animation :", 5.0f, (float)WINDOW_HEIGHT - 25.0f, .6f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("1 - Walk", 5.0f, (float)WINDOW_HEIGHT - 50.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("2 - Jump", 5.0f, (float)WINDOW_HEIGHT - 75.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("3 - Idle", 5.0f, (float)WINDOW_HEIGHT - 100.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("4 - Boxe", 5.0f, (float)WINDOW_HEIGHT - 125.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("5 - Wave", 5.0f, (float)WINDOW_HEIGHT - 150.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("6 - Live Test", 5.0f, (float)WINDOW_HEIGHT - 175.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("T - Toggle tail", 5.0f, (float)WINDOW_HEIGHT - 300.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
+		text.renderText("FPS: " + std::to_string(getFPS()), (float)WINDOW_WIDTH - 100.0f, 5.0f, .2f, Vector3(0.0f, 0.0f, 0.0f));
+
+		if (controls.tail) {
+			human.showTail();
+		} else {
+			human.hideTail();
+		}
+
+		if (controls.plus) {
+			human.scaleUp(controls.bodyPart);
+		}
+		if (controls.minus) {
+			human.scaleDown(controls.bodyPart);
+		}
+
+		if (controls.reload) {
+			controls.reload = false;
+			
+			switch (controls.state)
+			{
+				case WALK:
+					anim.loadAnimation("animations/walk.anim");
+					break;
+				case JUMP:
+					anim.loadAnimation("animations/jump.anim");
+					break;
+				case IDLE:
+					anim.loadAnimation("animations/idle.anim");
+					break;
+				case BOXE:
+					anim.loadAnimation("animations/boxe.anim");
+					break;
+				case WAVE:
+					anim.loadAnimation("animations/wave.anim");
+					break;
+				case TEST:
+					anim.loadAnimation("animations/liveTest.anim");
+					break;
+				default:
+					break;	
+			}
+
+			if (anim.getError()) {
+				animator.stopAnimation();
+				anim.clear();
+				ft_error_non_fatal("Could not load animation");
+			} else {
+				animator.startAnimation(anim);
+			}
+		}
 
 		animator.update(deltaTime);
 		human.draw(shader);

@@ -56,6 +56,10 @@ class Vector3 {
 		float	getY(void) const;
 		float	getZ(void) const;
 
+		void	setX(float x);
+		void	setY(float y);
+		void	setZ(float z);
+
 		static Vector3	interpolate(Vector3 const &v1, Vector3 const &v2, float time);
 
 	private:

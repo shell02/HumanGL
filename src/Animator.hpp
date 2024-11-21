@@ -15,6 +15,7 @@ class Animator {
 		
 		void		startAnimation(Animation const &animation);
 		void		update(float deltaTime);
+		void		stopAnimation();
 
 	private:
 		std::map<std::string, BoneTransform>	calculateCurrentPose();
