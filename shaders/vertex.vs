@@ -1,7 +1,6 @@
 #version 400 core
 layout (location = 0) in vec3 aPos;
 
-uniform mat4 first;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;

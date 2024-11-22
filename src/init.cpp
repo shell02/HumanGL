@@ -32,7 +32,7 @@ GLFWwindow*	initGL(void) {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwSetErrorCallback(error_callback);
 
-	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "PONG", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "HumanGL", NULL, NULL);
 	if (!window)
 	{
 		std::cerr << "Failed to initialize window" << std::endl;

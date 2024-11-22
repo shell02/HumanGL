@@ -2,7 +2,7 @@
 #include "Camera.hpp"
 
 void processInput(GLFWwindow *window, t_controls &controls) {
-	(void)controls;
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
