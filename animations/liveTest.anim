@@ -16,7 +16,7 @@ tailEnd			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
 
 keyframe 1.0
 head			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
-torso			translate 0.0 10.0 0.0	rotation 0.0	0.0 0.0 0.0
+torso			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
 leftArm			translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
 leftForeArm		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
 rightArm		translate 0.0 0.0 0.0	rotation 0.0	0.0 0.0 0.0
