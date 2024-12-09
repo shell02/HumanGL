@@ -140,7 +140,7 @@ void Model::setupLeftThigh() {
 	leftThigh.setScale(Vector3(0.5f, 1.5f, 0.5f));
 	leftThigh.setCenterRot(Matrix4::translation(Vector3(-.3f, -1.5f, 0.0f)));
 	leftThigh.setTranslation(Vector3(0.0f, -.5f, 0.0f));
-	rightForeArm.setScaleConstraintY(1.25f);
+	leftThigh.setScaleConstraintY(1.25f);
 }
 
 void Model::setupLeftLeg() {
@@ -148,7 +148,7 @@ void Model::setupLeftLeg() {
 	leftLeg.setScale(Vector3(0.45f, 1.5f, 0.5f));
 	leftLeg.setCenterRot(Matrix4::translation(Vector3(0.0f, -1.1f, 0.0f)));
 	leftLeg.setTranslation(Vector3(0.0f, -.5f, 0.0f));
-	rightForeArm.setScaleConstraintY(1.25f);
+	leftLeg.setScaleConstraintY(1.25f);
 }
 
 void Model::setupRightThigh() {
@@ -156,7 +156,7 @@ void Model::setupRightThigh() {
 	rightThigh.setScale(Vector3(0.5f, 1.5f, 0.5f));
 	rightThigh.setCenterRot(Matrix4::translation(Vector3(.3f, -1.5f, 0.0f)));
 	rightThigh.setTranslation(Vector3(0.0f, -.5f, 0.0f));
-	rightForeArm.setScaleConstraintY(1.25f);
+	rightThigh.setScaleConstraintY(1.25f);
 }
 
 void Model::setupRightLeg() {
@@ -164,7 +164,7 @@ void Model::setupRightLeg() {
 	rightLeg.setScale(Vector3(0.45f, 1.5f, 0.5f));
 	rightLeg.setCenterRot(Matrix4::translation(Vector3(0.0f, -1.1f, 0.0f)));
 	rightLeg.setTranslation(Vector3(0.0f, -.5f, 0.0f));
-	rightForeArm.setScaleConstraintY(1.25f);
+	rightLeg.setScaleConstraintY(1.25f);
 }
 
 void Model::setupTailBegin() {

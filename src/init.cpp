@@ -64,7 +64,7 @@ t_controls	initControls(void) {
 	controls.state = 0;
 	controls.bodyPart = 0;
 	controls.reload = false;
-	controls.tail = true;
+	controls.tail = false;
 	controls.t = false;
 	controls.plus = false;
 	controls.minus = false;

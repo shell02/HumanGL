@@ -4,7 +4,6 @@
 #include "Text.hpp"
 #include "Model.hpp"
 #include "Animator.hpp"
-#include "GUI.hpp"
 
 int main() {
 	GLFWwindow* window = initGL();
@@ -12,9 +11,6 @@ int main() {
 
 	Shader	shader("shaders/vertex.vs", "shaders/fragment.fs");
 	Text	text;
-	GUI		gui;
-
-	gui.addButton(100.0f, 100.0f, 100.0f, 50.0f, Vector3(0.0f, 1.0f, 0.0f));
 
 	Camera camera(Vector3(9.0f, -1.0f, 7.0f));
 	camera.setYaw(-140.0f);
@@ -50,8 +46,6 @@ int main() {
 		text.renderText("5 - Live Test", 5.0f, (float)WINDOW_HEIGHT - 150.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("T - Toggle tail", 5.0f, (float)WINDOW_HEIGHT - 300.0f, .5f, Vector3(0.0f, 0.0f, 0.0f));
 		text.renderText("FPS: " + std::to_string(getFPS()), (float)WINDOW_WIDTH - 100.0f, 5.0f, .2f, Vector3(0.0f, 0.0f, 0.0f));
-
-		gui.draw();
 
 		if (controls.tail) {
 			human.showTail();
@@ -108,7 +102,6 @@ int main() {
 	}
 	shader.clear();
 	text.clear();
-	gui.clear();
 	human.clear();
 
 	glfwDestroyWindow(window);
